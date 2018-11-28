@@ -91,9 +91,10 @@ var items = [
             .wait()                 
     )]                     
 ];
-PennController.GetTable( "GER-datasource-MCP.csv" ).setLabel("Expt");
+//PennController.GetTable( "GER-datasource-MCP.csv" ).setLabel("Expt");
+var myTable = PennController.GetTable("GER-datasource-MCP.csv" ).setLabel("Expt");
 
-PennController.FeedItems( PennController.GetTable( "GER-datasource-MCP.csv" ).filter("ExptType","Practice"),
+PennController.FeedItems( myTable.filter("ExptType","Practice"),
     (item) => PennController(
         newFunction("isGood", function(){ return item.Expt=="Practice-good"; })
         ,
@@ -169,7 +170,7 @@ PennController.FeedItems( PennController.GetTable( "GER-datasource-MCP.csv" ).fi
     )
 );
 
-PennController.FeedItems( PennController.GetTable( "GER-datasource-MCP.csv" ).filter("Expt","experiment-first"),
+PennController.FeedItems( myTable.filter("Expt","experiment-first"),
     (item) => PennController(
         newTimer("blank", 1000)
             .start()
@@ -248,7 +249,7 @@ PennController.FeedItems( PennController.GetTable( "GER-datasource-MCP.csv" ).fi
     .log("PROLIFIC_PID", PennController.GetURLParameter("PROLIFIC_PID"))
 );
 
-PennController.FeedItems( PennController.GetTable( "GER-datasource-MCP.csv" ).filter("Expt","experiment"),
+PennController.FeedItems( myTable.filter("Expt","experiment"),
     (item) => PennController(
         newTimer("blank", 1000)
             .start()
